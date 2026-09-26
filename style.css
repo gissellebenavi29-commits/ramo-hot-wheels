@@ -1,0 +1,851 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            #3b0000 0%,
+            #180000 25%,
+            #070707 65%
+        );
+
+    color: white;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+       FONDO
+========================= */
+
+.estrellas {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,0,0,.5) 1px, transparent 1px);
+
+    background-size:
+        80px 80px,
+        120px 120px;
+
+    opacity: .25;
+
+    z-index: -2;
+}
+
+
+/* =========================
+       CORAZONES
+========================= */
+
+.corazones span {
+    position: fixed;
+
+    color: #ff2525;
+
+    font-size: 20px;
+
+    opacity: .25;
+
+    pointer-events: none;
+
+    animation: flotar 6s infinite ease-in-out;
+
+    z-index: -1;
+}
+
+.corazones span:nth-child(1) {
+    left: 8%;
+    top: 20%;
+}
+
+.corazones span:nth-child(2) {
+    right: 10%;
+    top: 30%;
+
+    animation-delay: 1s;
+}
+
+.corazones span:nth-child(3) {
+    left: 15%;
+    bottom: 15%;
+
+    animation-delay: 2s;
+}
+
+.corazones span:nth-child(4) {
+    right: 15%;
+    bottom: 25%;
+
+    animation-delay: 3s;
+}
+
+.corazones span:nth-child(5) {
+    left: 50%;
+    top: 15%;
+
+    animation-delay: 4s;
+}
+
+
+/* =========================
+       INICIO
+========================= */
+
+.inicio {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.bandera {
+    font-size: 65px;
+
+    margin-bottom: 20px;
+
+    animation:
+        entrada .9s ease,
+        balanceo 3s infinite ease-in-out;
+}
+
+.pequeno {
+    color: #ff3333;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(38px, 10vw, 62px);
+
+    line-height: 1.05;
+
+    font-weight: normal;
+
+    text-shadow:
+        0 0 10px rgba(255,0,0,.5);
+}
+
+h1 span {
+    display: block;
+
+    color: #ff3030;
+
+    font-style: italic;
+
+    text-shadow:
+        0 0 20px rgba(255,0,0,.7);
+}
+
+.subtitulo {
+    color: #cfcfcf;
+
+    font-size: 18px;
+
+    margin:
+        25px
+        0
+        30px;
+}
+
+
+/* BOTÓN */
+
+button {
+    border: 1px solid #ff3030;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1717,
+            #8b0000
+        );
+
+    color: white;
+
+    padding:
+        16px
+        28px;
+
+    border-radius: 50px;
+
+    font-size: 17px;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(255,0,0,.5);
+
+    transition:
+        .3s;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+
+    box-shadow:
+        0 0 30px rgba(255,0,0,.8);
+}
+
+button:active {
+    transform: scale(.95);
+}
+
+.abajo {
+    color: #777;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================
+       REGALO
+========================= */
+
+.regalo {
+    min-height: 100vh;
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding:
+        70px
+        20px
+        60px;
+}
+
+.regalo.visible {
+    display: flex;
+
+    animation:
+        aparecer 1.2s ease;
+}
+
+.titulo-pequeno {
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #ff3333;
+
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-size: 30px;
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+}
+
+h2 span {
+    display: block;
+
+    color: #ff3030;
+
+    font-style: italic;
+}
+
+
+/* =========================
+       RAMO
+========================= */
+
+.ramo {
+    position: relative;
+
+    width: 340px;
+
+    height: 450px;
+
+    margin-top: 10px;
+}
+
+
+/* =========================
+       CARROS
+========================= */
+
+.carro {
+    position: absolute;
+
+    width: 105px;
+
+    height: auto;
+
+    object-fit: contain;
+
+    z-index: 6;
+
+    filter:
+        drop-shadow(0 10px 7px rgba(0,0,0,.9))
+        drop-shadow(0 0 7px rgba(255,0,0,.15));
+
+    opacity: 0;
+
+    transform:
+        translateY(80px)
+        scale(.3)
+        rotate(0deg);
+
+    transition:
+        opacity .8s ease,
+        transform .9s cubic-bezier(.2,1.4,.4,1);
+}
+
+
+/* Posiciones */
+
+.carro1 {
+    top: 10px;
+    left: 117px;
+}
+
+.carro2 {
+    top: 58px;
+    left: 22px;
+}
+
+.carro3 {
+    top: 58px;
+    right: 18px;
+}
+
+.carro4 {
+    top: 125px;
+    left: 58px;
+}
+
+.carro5 {
+    top: 125px;
+    right: 54px;
+}
+
+.carro6 {
+    top: 178px;
+    left: 117px;
+}
+
+
+/* Aparición */
+
+.regalo.visible .carro {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.regalo.visible .carro1 {
+    transition-delay: .2s;
+}
+
+.regalo.visible .carro2 {
+    transition-delay: .4s;
+}
+
+.regalo.visible .carro3 {
+    transition-delay: .6s;
+}
+
+.regalo.visible .carro4 {
+    transition-delay: .8s;
+}
+
+.regalo.visible .carro5 {
+    transition-delay: 1s;
+}
+
+.regalo.visible .carro6 {
+    transition-delay: 1.2s;
+}
+
+
+/* =========================
+       TALLOS
+========================= */
+
+.tallo {
+    position: absolute;
+
+    bottom: 105px;
+
+    left: 50%;
+
+    width: 5px;
+
+    height: 190px;
+
+    background:
+        linear-gradient(
+            to right,
+            #123b18,
+            #4c9a4f,
+            #123b18
+        );
+
+    border-radius: 10px;
+
+    transform-origin: bottom;
+
+    z-index: 2;
+}
+
+.tallo1 {
+    transform: rotate(-31deg);
+}
+
+.tallo2 {
+    transform: rotate(-20deg);
+}
+
+.tallo3 {
+    transform: rotate(20deg);
+}
+
+.tallo4 {
+    transform: rotate(31deg);
+}
+
+.tallo5 {
+    transform: rotate(-9deg);
+}
+
+.tallo6 {
+    transform: rotate(9deg);
+}
+
+
+/* =========================
+       PAPEL
+========================= */
+
+.papel {
+    position: absolute;
+
+    width: 250px;
+
+    height: 190px;
+
+    bottom: 0;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 5;
+
+    background:
+        linear-gradient(
+            135deg,
+            #080808,
+            #292929 45%,
+            #0a0a0a
+        );
+
+    clip-path:
+        polygon(
+            10% 0,
+            90% 0,
+            100% 100%,
+            0 100%
+        );
+
+    border-bottom:
+        5px solid #d90000;
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.8);
+}
+
+
+/* Líneas del papel */
+
+.lineas {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent 0px,
+            transparent 25px,
+            rgba(255,0,0,.12) 26px,
+            rgba(255,0,0,.12) 28px
+        );
+}
+
+
+/* =========================
+       LAZO
+========================= */
+
+.lazo {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 72px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 10;
+
+    font-size: 55px;
+
+    filter:
+        drop-shadow(0 5px 5px black);
+
+    animation:
+        balanceo 3s infinite ease-in-out;
+}
+
+
+/* =========================
+       BRILLOS
+========================= */
+
+.brillo {
+    position: absolute;
+
+    color: #fff;
+
+    font-size: 24px;
+
+    opacity: 0;
+
+    z-index: 10;
+
+    animation:
+        brillo 2s infinite;
+}
+
+.brillo1 {
+    top: 20px;
+    left: 70px;
+}
+
+.brillo2 {
+    top: 110px;
+    right: 25px;
+
+    animation-delay: .5s;
+}
+
+.brillo3 {
+    top: 180px;
+    left: 35px;
+
+    animation-delay: 1s;
+}
+
+.brillo4 {
+    top: 40px;
+    right: 75px;
+
+    animation-delay: 1.5s;
+}
+
+.regalo.visible .brillo {
+    opacity: 1;
+}
+
+
+/* =========================
+       CARTA
+========================= */
+
+.carta {
+    position: relative;
+
+    width: min(92%, 470px);
+
+    margin-top: 20px;
+
+    padding:
+        35px
+        25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,30,30,.95),
+            rgba(10,10,10,.98)
+        );
+
+    border:
+        1px solid rgba(255,40,40,.35);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.7),
+        0 0 30px rgba(255,0,0,.08);
+
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+
+    transition:
+        1s ease;
+}
+
+.regalo.visible .carta {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    transition-delay: 1.7s;
+}
+
+.corazon-carta {
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.carta h3 {
+    color: #ff3030;
+
+    font-size: 27px;
+
+    font-weight: normal;
+
+    font-style: italic;
+}
+
+.linea {
+    width: 60px;
+
+    height: 2px;
+
+    background: #ff3030;
+
+    margin:
+        12px
+        auto
+        22px;
+}
+
+.carta p {
+    color: #d8d8d8;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 10px;
+}
+
+.carta .final {
+    color: #ff4141;
+
+    font-weight: bold;
+
+    margin-top: 18px;
+}
+
+.firma {
+    color: #777;
+
+    font-size: 14px;
+
+    margin-top: 20px;
+
+    font-style: italic;
+}
+
+
+/* =========================
+       FINAL
+========================= */
+
+.final-carrera {
+    margin-top: 35px;
+
+    color: #8b8b8b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+       ANIMACIONES
+========================= */
+
+@keyframes entrada {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.5)
+            rotate(-20deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes balanceo {
+
+    0%,100% {
+        transform:
+            rotate(-3deg);
+    }
+
+    50% {
+        transform:
+            rotate(3deg);
+    }
+}
+
+@keyframes flotar {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(0);
+    }
+
+    50% {
+        transform:
+            translateY(-25px)
+            rotate(10deg);
+    }
+}
+
+@keyframes brillo {
+
+    0%,100% {
+        transform:
+            scale(.6)
+            rotate(0);
+
+        opacity: .1;
+    }
+
+    50% {
+        transform:
+            scale(1.3)
+            rotate(25deg);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+       CELULAR
+========================= */
+
+@media (max-width: 500px) {
+
+    .inicio {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .ramo {
+        transform:
+            scale(.9);
+
+        margin-top: 0;
+    }
+
+    .regalo {
+        padding-top: 50px;
+    }
+
+    .carta {
+        padding:
+            30px
+            20px;
+    }
+}
